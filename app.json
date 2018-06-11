@@ -3,5 +3,9 @@
   "description": "A barebones Vuejs app using Express 4,Express,Vuex,Vuetify,I18n,Axios...",
   "repository": "https://github.com/TxTony/VueJS-PWA-starter_pack",
   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Vue.js_Logo.svg/2000px-Vue.js_Logo.svg.png",
-  "keywords": ["Vuejs", "express", "PWA","Advanced Starter"]
+  "keywords": ["Vuejs", "express", "PWA","Advanced Starter"],
+  "scripts": {
+    "postdeploy": "npm run build && node app",
+    "pr-predestroy": "npm run build && node app"
+  }
 }
