@@ -2,27 +2,20 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import Vuex from 'vuex'
-import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.css'
 import StoreIndex from './store/index.js'
 import App from './App'
 import router from './router'
-import VueI18n from 'vue-i18n'
-import messages from './translations/appTranslation.js'
 import services from './services.js'
+import plugins from './plugins.js'
+
 Vue.config.productionTip = false
 Vue.use(Vuex)
 var store = new Vuex.Store(StoreIndex)
-Vue.use(Vuetify)
-Vue.use(VueI18n)
-
-// Create VueI18n instance with options
-const i18n = new VueI18n({
-    locale: 'en', // set locale
-    messages // set locale messages
-})
 /* eslint-disable no-undef */
 var Root = services.addServices(Vue)
+Root = plugins.addPlugins(Root);
+const i18n = plugins.getI18nInstance();
 /* eslint-disable no-new */
 new Root({
     el: '#app',
