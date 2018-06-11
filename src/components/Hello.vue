@@ -43,6 +43,9 @@
                     </v-chip>+                    
                     <v-chip label color="pink" text-color="black">
                       <a href="http://kazupon.github.io/vue-i18n/en/installation.html" >VueI18n </a>
+                    </v-chip>+
+                    <v-chip label color="amber lighten-5" text-color="black">
+                      <a href="https://github.com/vue-styleguidist/vue-styleguidist" > vue-styleguidist </a>
                     </v-chip>
               </v-flex>
               <v-flex xs10 offset-xs1 v-else >
@@ -57,10 +60,41 @@ import { mapGetters } from 'vuex'
 /** Hello world component **/
 export default {
     name: 'hello',
-    data () {
+    props: {
+        /**
+        * This is a sample property
+        * @public
+        */
+        sampleProp: String
+
+    },
+    data: function () {
         return {
-            msg: 'Welcome to Your Vue.js PWA',
+            /**
+            * This message is render in the main container of this view
+            * @public
+            * @model
+            */
+            msg: 'Welcome to Your Vue.js PWA (pack with webpack 4)',
+            /**
+            * Define if drawer menu is open or not
+            * @public
+            * @model
+            */
             drawer: false
+        }
+    },
+    methods: {
+        /**
+        * sample function to see how the doc generator works
+        *
+        * @public
+        * @params {string} sampleString
+        * @params {object} sampleObject
+        * @return {boolean}
+        **/
+        fakeFunctionToSeeHowTheDocWorks: function (sampleString, sampleObject) {
+            return true
         }
     },
     computed: {
@@ -68,11 +102,18 @@ export default {
             'isAppWorks',
             'isVuexOn'
         ]),
+        /**
+        *   Check from vuex if the app work
+        *   @public
+        *   @return {boolean}
+        */
         isAppWorking: function () {
             return this.$store.getters.isAppWorks
         },
         /**
         * Check if vuex exist
+        * @public
+        * @return {boolean}
         */
         isVuexOn: function () {
             return this.$store.getters.isVuexOn
