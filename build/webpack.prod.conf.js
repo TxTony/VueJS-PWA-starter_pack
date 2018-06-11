@@ -9,22 +9,23 @@ const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
-const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
-const loadMinified = require('./load-minified')
+//const ExtractTextPlugin = require('extract-text-webpack-plugin')
+//const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
+//const loadMinified = require('./load-minified')
 
-const env = process.env.NODE_ENV === 'testing'
-  ? require('../config/test.env')
-  : config.build.env
-
+const env = process.env.NODE_ENV === 'testing' ? require('../config/test.env') : config.build.env
+function resolve (dir) {
+    return path.join(__dirname, '..', dir)
+}
 const webpackConfig = merge(baseWebpackConfig, {
-  module: {
+  /*module: {
     rules: utils.styleLoaders({
       sourceMap: config.build.productionSourceMap,
       extract: true
     })
-  },
+  },*/
+  mode: "production",
   devtool: config.build.productionSourceMap ? '#source-map' : false,
   output: {
     path: config.build.assetsRoot,
@@ -33,49 +34,38 @@ const webpackConfig = merge(baseWebpackConfig, {
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
-    new webpack.DefinePlugin({
+    /*new webpack.DefinePlugin({
       'process.env': env
-    }),
-    new webpack.optimize.UglifyJsPlugin({
+    }),*/
+    /*new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
       },
       sourceMap: true
-    }),
+    }),*/
     // extract css into its own file
-    new ExtractTextPlugin({
+    /*new ExtractTextPlugin({
       filename: utils.assetsPath('css/[name].[contenthash].css')
-    }),
+    }),*/
     // Compress extracted CSS. We are using this plugin so that possible
     // duplicated CSS from different components can be deduped.
-    new OptimizeCSSPlugin({
+    /*new OptimizeCSSPlugin({
       cssProcessorOptions: {
         safe: true
       }
-    }),
+    }),*/
     // generate dist index.html with correct asset hash for caching.
     // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
-      filename: process.env.NODE_ENV === 'testing'
-        ? 'index.html'
-        : config.build.index,
-      template: 'index.html',
-      inject: true,
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeAttributeQuotes: true
-        // more options:
-        // https://github.com/kangax/html-minifier#options-quick-reference
-      },
+      filename: process.env.NODE_ENV === 'testing' ? resolve('/dist/index.html') : config.build.index,
+      template:resolve('/index.html'),
+      inject: false,
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
-      chunksSortMode: 'dependency',
-      serviceWorkerLoader: `<script>${loadMinified(path.join(__dirname,
-        './service-worker-prod.js'))}</script>`
+      chunksSortMode: 'dependency'
     }),
     // split vendor js into its own file
-    new webpack.optimize.CommonsChunkPlugin({
+    /*new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: function (module, count) {
         // any required modules inside node_modules are extracted to vendor
@@ -87,17 +77,17 @@ const webpackConfig = merge(baseWebpackConfig, {
           ) === 0
         )
       }
-    }),
+    }),*/
     // extract webpack runtime and module manifest to its own file in order to
     // prevent vendor hash from being updated whenever app bundle is updated
-    new webpack.optimize.CommonsChunkPlugin({
+    /*new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest',
       chunks: ['vendor']
-    }),
+    }),*/
     // copy custom static assets
     new CopyWebpackPlugin([
       {
-        from: path.resolve(__dirname, '../static'),
+        from: path.resolve(__dirname, '../dist'),
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
       }
@@ -106,7 +96,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     new SWPrecacheWebpackPlugin({
       cacheId: 'vue_pwa_starter',
       filename: 'service-worker.js',
-      staticFileGlobs: ['dist/**/*.{js,html,css}'],
+      //staticFileGlobs: ['dist/**/*.{js,html,css}'],
       minify: true,
       stripPrefix: 'dist/'
     })

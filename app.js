@@ -7,7 +7,7 @@ var router = express.Router();
 var serveStatic = require('serve-static');
 // run express server and serve static files
 const app  = express();
-router.get('/index', function (req, res) {
+router.get('/', function (req, res) {
     console.log('Time: '+ Date.now()+ '-- root page');
     res.status(200);
     res.render(__dirname + '/dist/index.html');
