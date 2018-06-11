@@ -17,6 +17,7 @@
     "styleguide:build": "vue-styleguidist build --config build/styleguide.config.js"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "express": "^4.16.2",
     "vue": "^2.5.2",
     "vue-i18n": "^7.4.0",
