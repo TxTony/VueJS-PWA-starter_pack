@@ -84,6 +84,9 @@ export default {
             drawer: false
         }
     },
+    created:function(){
+        this.tryAxiosGet();
+    },
     methods: {
         /**
         * sample function to see how the doc generator works
@@ -95,6 +98,19 @@ export default {
         **/
         fakeFunctionToSeeHowTheDocWorks: function (sampleString, sampleObject) {
             return true
+        },
+        /**
+        * this function make a GET request on a fake data server located here : https://reqres.in
+        * it demonstrates how Axios works, and print something in your console when the request is done
+        */
+        tryAxiosGet:function(){
+            this.$axios.get('https://reqres.in/api/users?page=2')
+              .then(function (response) {
+                console.log(response);
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
         }
     },
     computed: {
