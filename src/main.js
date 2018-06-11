@@ -9,14 +9,7 @@ import App from './App'
 import router from './router'
 import VueI18n from 'vue-i18n'
 import messages from './translations/appTranslation.js'
-// Create VueI18n instance with options
-/*
-const i18n = new VueI18n({
-    locale: 'en', // set locale
-    messages // set locale messages
-})
-*/
-
+import Axios from 'axios'
 Vue.config.productionTip = false
 Vue.use(Vuex)
 var store = new Vuex.Store(StoreIndex)
@@ -27,6 +20,13 @@ Vue.use(VueI18n)
 const i18n = new VueI18n({
     locale: 'en', // set locale
     messages // set locale messages
+})
+
+// Add axios as a "service"
+Object.defineProperty(Vue.prototype, '$axios', {
+    get(){
+        return Axios;
+    }
 })
 /* eslint-disable no-new */
 new Vue({
