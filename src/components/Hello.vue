@@ -46,6 +46,9 @@
                     </v-chip>+
                     <v-chip label color="amber lighten-5" text-color="black">
                       <a href="https://github.com/vue-styleguidist/vue-styleguidist" > vue-styleguidist </a>
+                    </v-chip>+
+                    <v-chip label color="brown darken-1" text-color="black">
+                      <a href="https://github.com/axios/axios" > Axios </a>
                     </v-chip>
               </v-flex>
               <v-flex xs10 offset-xs1 v-else >
