@@ -87,8 +87,8 @@ export default {
             drawer: false
         }
     },
-    created:function(){
-        this.tryAxiosGet();
+    created: function () {
+        this.tryAxiosGet()
     },
     methods: {
         /**
@@ -106,14 +106,14 @@ export default {
         * this function make a GET request on a fake data server located here : https://reqres.in
         * it demonstrates how Axios works, and print something in your console when the request is done
         */
-        tryAxiosGet:function(){
+        tryAxiosGet: function () {
             this.$axios.get('https://reqres.in/api/users?page=2')
-              .then(function (response) {
-                console.log(response);
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
+                .then(function (response) {
+                    console.log(response)
+                })
+                .catch(function (error) {
+                    console.log(error)
+                })
         }
     },
     computed: {

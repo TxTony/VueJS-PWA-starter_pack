@@ -9,7 +9,7 @@ import App from './App'
 import router from './router'
 import VueI18n from 'vue-i18n'
 import messages from './translations/appTranslation.js'
-import services from './services.js';
+import './services.js'
 Vue.config.productionTip = false
 Vue.use(Vuex)
 var store = new Vuex.Store(StoreIndex)
@@ -21,10 +21,10 @@ const i18n = new VueI18n({
     locale: 'en', // set locale
     messages // set locale messages
 })
-
-var vue = addServices(Vue)
+/* eslint-disable no-undef */
+var Root = addServices(Vue)
 /* eslint-disable no-new */
-new vue({
+new Root({
     el: '#app',
     store,
     router,
