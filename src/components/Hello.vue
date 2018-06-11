@@ -29,7 +29,6 @@
                     </v-navigation-drawer>
             </v-layout>
             
-            <!--  -->
             <v-container grid-list-md text-xs-center>
               <v-flex xs10 offset-xs1 v-if="isAppWorking" >
                     <h1>{{ $t("message.msg") }}</h1>
@@ -50,17 +49,12 @@
                     <h1> {{ $t("message.dont_work") }} </h1>
               </v-flex>
             </v-container>
-      
-          
-        
-
-        
   </div>
-  
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+/** Hello world component **/
 export default {
     name: 'hello',
     data () {
@@ -77,6 +71,9 @@ export default {
         isAppWorking: function () {
             return this.$store.getters.isAppWorks
         },
+        /**
+        * Check if vuex exist
+        */
         isVuexOn: function () {
             return this.$store.getters.isVuexOn
         }
