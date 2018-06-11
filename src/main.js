@@ -11,7 +11,7 @@ Vue.config.productionTip = false
 
 /* eslint-disable no-undef */
 var Root = services.addServices(Vue)
-Root = plugins.addPlugins(Root);
+Root = plugins.addPlugins(Root)
 var store = plugins.getVuexInstance()
 const i18n = plugins.getI18nInstance()
 /* eslint-disable no-new */

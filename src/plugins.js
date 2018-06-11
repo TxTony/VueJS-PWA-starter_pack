@@ -14,13 +14,13 @@ export default {
         // Create VueI18n instance with options
         return Vue
     },
-    getI18nInstance: function(){
+    getI18nInstance: function () {
         return new VueI18n({
             locale: 'en', // set locale
             messages // set locale messages
         })
     },
-    getVuexInstance: function(){
+    getVuexInstance: function () {
         return new Vuex.Store(StoreIndex)
     }
 }
