@@ -1,4 +1,4 @@
 module.exports = {
-  webpackConfig: require('./webpack.dev.conf.js'),
+  webpackConfig: require('./webpack.base.conf'),
   components: '../src/components/**/[A-Z]*.vue'
 };

@@ -13,7 +13,7 @@
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src",
     "lint:fix": "eslint --ext .js,.vue src --fix",
-    "styleguide": "vue-styleguidist server",
+    "styleguide": "vue-styleguidist server --config build/styleguide.config.js",
     "styleguide:build": "vue-styleguidist build --config build/styleguide.config.js"
   },
   "dependencies": {
